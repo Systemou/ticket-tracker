@@ -1,4 +1,5 @@
 import React from 'react';
+import { Plus } from 'lucide-react';
 
 import MenuItem from 'app/shared/layout/menus/menu-item';
 
@@ -6,14 +7,17 @@ const EntitiesMenu = () => {
   return (
     <>
       {/* prettier-ignore */}
+      <MenuItem icon="plus" to="/ticket/new">
+        Submit New Ticket
+      </MenuItem>
       <MenuItem icon="asterisk" to="/ticket">
-        Ticket
+        My Tickets
       </MenuItem>
       <MenuItem icon="asterisk" to="/ticket-category">
-        Ticket Category
+        Ticket Categories
       </MenuItem>
       <MenuItem icon="asterisk" to="/ticket-priority">
-        Ticket Priority
+        Ticket Priorities
       </MenuItem>
       {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
     </>

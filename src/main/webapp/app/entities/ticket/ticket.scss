@@ -1,0 +1,79 @@
+// Ticket component styling
+.ticket-container {
+  .btn-outline-danger {
+    border-color: #ef4444;
+    color: #ef4444;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      border-color: #ef4444;
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  // Delete modal styling
+  .modal-content {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .modal-header {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    border-bottom: 1px solid #fecaca;
+  }
+
+  .modal-body {
+    .bg-light {
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0;
+    }
+  }
+
+  // Table row hover effects
+  .table-hover tbody tr:hover {
+    background-color: var(--gray-50);
+    transition: background-color 0.2s ease;
+  }
+
+  // Action buttons container
+  .action-buttons {
+    .btn {
+      min-width: 70px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+  }
+
+  // Status badges enhancement
+  .badge {
+    font-weight: 500;
+    letter-spacing: 0.025em;
+  }
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .action-buttons {
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    .table-responsive {
+      .table {
+        font-size: 0.875rem;
+      }
+    }
+  }
+}

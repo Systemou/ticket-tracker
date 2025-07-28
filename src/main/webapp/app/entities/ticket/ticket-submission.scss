@@ -1,0 +1,276 @@
+.ticket-submission-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+
+  .step-content {
+    min-height: 400px;
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-control {
+    border-radius: 8px;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+    }
+
+    &.is-invalid {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 0.2rem rgba(239, 68, 68, 0.25);
+    }
+  }
+
+  .invalid-feedback {
+    font-size: 0.875rem;
+    color: #ef4444;
+    margin-top: 0.25rem;
+  }
+
+  .form-text {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-top: 0.25rem;
+  }
+
+  .priority-info {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-left: 4px solid #3b82f6;
+
+    h6 {
+      color: #334155;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 0.5rem 0.75rem;
+    }
+
+    small {
+      color: #64748b;
+      line-height: 1.4;
+    }
+  }
+
+  .progress {
+    height: 8px;
+    border-radius: 4px;
+    background-color: #e2e8f0;
+
+    .progress-bar {
+      background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+      border-radius: 4px;
+    }
+  }
+
+  .btn {
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    &:disabled {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    border: none;
+
+    &:hover {
+      background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
+    }
+  }
+
+  .btn-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: none;
+
+    &:hover {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    }
+  }
+
+  .card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .alert {
+    border: none;
+    border-radius: 8px;
+
+    &.alert-info {
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+      color: #1e40af;
+      border-left: 4px solid #3b82f6;
+    }
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+  }
+
+  // Step indicators
+  .step-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &.active {
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    &.completed {
+      background: #10b981;
+      color: white;
+    }
+
+    &.pending {
+      background: #e2e8f0;
+      color: #64748b;
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    padding: 1rem 0;
+
+    .step-content {
+      min-height: 300px;
+    }
+
+    .priority-info {
+      .row {
+        .col-md-3 {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  // Loading states
+  .spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  // Character counter
+  .character-counter {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-align: right;
+    margin-top: 0.25rem;
+
+    &.warning {
+      color: #f59e0b;
+    }
+
+    &.danger {
+      color: #ef4444;
+    }
+  }
+
+  // Review card styling
+  .review-card {
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+
+    &:hover {
+      border-color: #3b82f6;
+      background: #eff6ff;
+    }
+  }
+
+  // Animation for step transitions
+  .step-transition-enter {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  .step-transition-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+
+  .step-transition-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .step-transition-exit-active {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 300ms, transform 300ms;
+  }
+}
+
+// Accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+  .ticket-submission-container {
+    .btn:hover {
+      transform: none;
+    }
+
+    .card:hover {
+      transform: none;
+    }
+
+    .step-transition-enter,
+    .step-transition-enter-active,
+    .step-transition-exit,
+    .step-transition-exit-active {
+      transition: none;
+    }
+  }
+}
+
+// Focus styles for accessibility
+.ticket-submission-container {
+  .form-control:focus,
+  .btn:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+}

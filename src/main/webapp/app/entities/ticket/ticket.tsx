@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Button, Table, Badge, Card, Row, Col } from 'reactstrap';
+import { Button, Table, Badge, Card, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { JhiItemCount, JhiPagination, TextFormat, getPaginationState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortDown, faSortUp, faPlus, faSync, faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Ticket as TicketIcon, Plus, RefreshCw, Search, Filter } from 'lucide-react';
+import { Ticket as TicketIcon, Plus, RefreshCw, Search, Filter, Trash2 } from 'lucide-react';
 import { APP_DATE_FORMAT } from 'app/config/constants';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { getEntities } from './ticket.reducer';
+import { getEntities, deleteEntity } from './ticket.reducer';
+import './ticket.scss';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -82,10 +83,13 @@ export const Ticket = () => {
   const [paginationState, setPaginationState] = useState(
     overridePaginationStateWithQueryParams(getPaginationState(pageLocation, ITEMS_PER_PAGE, 'id'), pageLocation.search),
   );
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [ticketToDelete, setTicketToDelete] = useState(null);
 
   const ticketList = useAppSelector(state => state.ticket.entities);
   const loading = useAppSelector(state => state.ticket.loading);
   const totalItems = useAppSelector(state => state.ticket.totalItems);
+  const updateSuccess = useAppSelector(state => state.ticket.updateSuccess);
 
   const getAllEntities = () => {
     dispatch(
@@ -141,6 +145,29 @@ export const Ticket = () => {
   const handleSyncList = () => {
     sortEntities();
   };
+
+  const handleDeleteClick = ticket => {
+    setTicketToDelete(ticket);
+    setDeleteModalOpen(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    if (ticketToDelete) {
+      dispatch(deleteEntity(ticketToDelete.id));
+    }
+  };
+
+  const handleDeleteCancel = () => {
+    setDeleteModalOpen(false);
+    setTicketToDelete(null);
+  };
+
+  useEffect(() => {
+    if (updateSuccess) {
+      setDeleteModalOpen(false);
+      setTicketToDelete(null);
+    }
+  }, [updateSuccess]);
 
   const getSortIconByFieldName = (fieldName: string) => {
     const sortFieldName = paginationState.sort;
@@ -353,6 +380,19 @@ export const Ticket = () => {
                                   Edit
                                 </Link>
                               </motion.div>
+                              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                                <Button
+                                  color="danger"
+                                  size="sm"
+                                  outline
+                                  onClick={() => handleDeleteClick(ticket)}
+                                  className="d-flex align-items-center gap-1"
+                                  data-cy="delete-ticket-button"
+                                >
+                                  <Trash2 size={14} />
+                                  Delete
+                                </Button>
+                              </motion.div>
                             </div>
                           </td>
                         </motion.tr>
@@ -397,6 +437,47 @@ export const Ticket = () => {
           </Col>
         </Row>
       </motion.div>
+
+      {/* Delete Confirmation Modal */}
+      <Modal isOpen={deleteModalOpen} toggle={handleDeleteCancel} centered>
+        <ModalHeader toggle={handleDeleteCancel} className="border-0">
+          <div className="d-flex align-items-center gap-2">
+            <Trash2 size={20} className="text-danger" />
+            <span>Confirm Delete</span>
+          </div>
+        </ModalHeader>
+        <ModalBody className="py-4">
+          <div className="text-center">
+            <div className="mb-3">
+              <Trash2 size={48} className="text-danger opacity-75" />
+            </div>
+            <h5 className="mb-3">Are you sure you want to delete this ticket?</h5>
+            {ticketToDelete && (
+              <div className="bg-light p-3 rounded">
+                <p className="mb-1">
+                  <strong>Title:</strong> {ticketToDelete.title}
+                </p>
+                <p className="mb-1">
+                  <strong>ID:</strong> #{ticketToDelete.id}
+                </p>
+                <p className="mb-0">
+                  <strong>Status:</strong> {ticketToDelete.status}
+                </p>
+              </div>
+            )}
+            <p className="text-muted mt-3 mb-0">This action cannot be undone. The ticket will be permanently deleted.</p>
+          </div>
+        </ModalBody>
+        <ModalFooter className="border-0">
+          <Button color="secondary" onClick={handleDeleteCancel} className="px-4">
+            Cancel
+          </Button>
+          <Button color="danger" onClick={handleDeleteConfirm} className="px-4" data-cy="confirm-delete-button">
+            <Trash2 size={16} className="me-2" />
+            Delete Ticket
+          </Button>
+        </ModalFooter>
+      </Modal>
     </motion.div>
   );
 };

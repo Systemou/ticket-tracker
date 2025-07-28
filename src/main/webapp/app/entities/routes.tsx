@@ -4,6 +4,7 @@ import { Route } from 'react-router';
 import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
 
 import Ticket from './ticket';
+import TicketSubmission from './ticket/ticket-submission';
 import TicketCategory from './ticket-category';
 import TicketPriority from './ticket-priority';
 import Debug from 'app/shared/layout/debug/debug';
@@ -15,6 +16,7 @@ export default () => {
       <ErrorBoundaryRoutes>
         {/* prettier-ignore */}
         <Route path="ticket/*" element={<Ticket />} />
+        <Route path="ticket/new" element={<TicketSubmission />} />
         <Route path="ticket-category/*" element={<TicketCategory />} />
         <Route path="ticket-priority/*" element={<TicketPriority />} />
         <Route path="debug" element={<Debug />} />

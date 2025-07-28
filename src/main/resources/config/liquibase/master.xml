@@ -25,8 +25,9 @@
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20250728015630_added_ticket_category_data.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20250728015631_added_ticket_priority_data.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20250728015632_fix_ticket_data.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20250728015633_update_existing_tickets.xml" relativeToChangelogFile="false"/>
+                    <include file="config/liquibase/changelog/20250728015632_fix_ticket_data.xml" relativeToChangelogFile="false"/>
+                <include file="config/liquibase/changelog/20250728015633_update_existing_tickets.xml" relativeToChangelogFile="false"/>
+                <include file="config/liquibase/changelog/20250728015634_clear_all_tickets.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20250728015627_added_entity_constraints_Ticket.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->

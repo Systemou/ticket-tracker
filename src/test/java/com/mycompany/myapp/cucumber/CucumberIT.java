@@ -11,11 +11,9 @@ import com.mycompany.myapp.IntegrationTest;
 @Suite
 @IncludeEngines("cucumber")
 @SelectClasspathResource("com/mycompany/myapp/cucumber")
-@ConfigurationParameters(
-    {
-        @ConfigurationParameter(key = "cucumber.plugin", value = "pretty"),
-        @ConfigurationParameter(key = "cucumber.glue", value = "com.mycompany.myapp.cucumber"),
-    }
-)
+@ConfigurationParameters({
+    @ConfigurationParameter(key = "cucumber.plugin", value = "pretty"),
+    @ConfigurationParameter(key = "cucumber.glue", value = "com.mycompany.myapp.cucumber"),
+})
 @IntegrationTest
 class CucumberIT {}

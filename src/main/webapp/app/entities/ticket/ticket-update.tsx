@@ -50,11 +50,6 @@ export const TicketUpdate = () => {
   const ticketPriorities = useAppSelector(state => state.ticketPriority.entities);
   const users = useAppSelector(state => state.userManagement.users || []);
 
-  // Debug: Check if data is loading
-  const ticketCategoryLoading = useAppSelector(state => state.ticketCategory.loading);
-  const ticketPriorityLoading = useAppSelector(state => state.ticketPriority.loading);
-  const userLoading = useAppSelector(state => state.userManagement.loading);
-
   const ticketEntity = useAppSelector(state => state.ticket.entity);
   const loading = useAppSelector(state => state.ticket.loading);
   const updating = useAppSelector(state => state.ticket.updating);
@@ -84,11 +79,6 @@ export const TicketUpdate = () => {
   }, [updateSuccess]);
 
   const saveEntity = values => {
-    // Temporary debugging - remove after fixing
-    console.warn('Form values being submitted:', values);
-    console.warn('Title value:', values.title);
-    console.warn('Description value:', values.description);
-
     if (values.id !== undefined && typeof values.id !== 'number') {
       values.id = Number(values.id);
     }
@@ -101,8 +91,6 @@ export const TicketUpdate = () => {
       priority: ticketPriorities.find(it => it.id.toString() === values.priority?.toString()),
       user: users.find(it => it.id.toString() === values.user?.toString()),
     };
-
-    console.warn('Entity being sent to backend:', entity);
 
     if (isNew) {
       dispatch(createEntity(entity));
@@ -153,38 +141,6 @@ export const TicketUpdate = () => {
                 </motion.div>
               </Col>
             </Row>
-          </div>
-        </Card>
-      </motion.div>
-
-      {/* Debug Info */}
-      <motion.div variants={fieldVariants} className="mb-4">
-        <Card className="border-0 shadow-sm bg-light">
-          <div className="p-3">
-            <h6 className="mb-2">Debug Info:</h6>
-            <div className="row">
-              <div className="col-md-4">
-                <small>
-                  Categories: {ticketCategories.length} (Loading: {ticketCategoryLoading ? 'Yes' : 'No'})
-                </small>
-                <br />
-                <small className="text-muted">{ticketCategories.map(cat => `${cat.id}:${cat.name}`).join(', ')}</small>
-              </div>
-              <div className="col-md-4">
-                <small>
-                  Priorities: {ticketPriorities.length} (Loading: {ticketPriorityLoading ? 'Yes' : 'No'})
-                </small>
-                <br />
-                <small className="text-muted">{ticketPriorities.map(pri => `${pri.id}:${pri.name}`).join(', ')}</small>
-              </div>
-              <div className="col-md-4">
-                <small>
-                  Users: {users.length} (Loading: {userLoading ? 'Yes' : 'No'})
-                </small>
-                <br />
-                <small className="text-muted">{users.map(user => `${user.id}:${user.login}`).join(', ')}</small>
-              </div>
-            </div>
           </div>
         </Card>
       </motion.div>

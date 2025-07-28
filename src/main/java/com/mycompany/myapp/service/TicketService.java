@@ -1,14 +1,18 @@
 package com.mycompany.myapp.service;
 
-import com.mycompany.myapp.domain.Ticket;
-import com.mycompany.myapp.repository.TicketRepository;
+import java.time.Instant;
 import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.mycompany.myapp.domain.Ticket;
+import com.mycompany.myapp.domain.enumeration.TicketStatus;
+import com.mycompany.myapp.repository.TicketRepository;
 
 /**
  * Service Implementation for managing {@link com.mycompany.myapp.domain.Ticket}.
@@ -20,9 +24,11 @@ public class TicketService {
     private static final Logger LOG = LoggerFactory.getLogger(TicketService.class);
 
     private final TicketRepository ticketRepository;
+    private final TicketValidationService ticketValidationService;
 
-    public TicketService(TicketRepository ticketRepository) {
+    public TicketService(TicketRepository ticketRepository, TicketValidationService ticketValidationService) {
         this.ticketRepository = ticketRepository;
+        this.ticketValidationService = ticketValidationService;
     }
 
     /**
@@ -33,6 +39,20 @@ public class TicketService {
      */
     public Ticket save(Ticket ticket) {
         LOG.debug("Request to save Ticket : {}", ticket);
+
+        // Validate ticket according to business rules
+        ticketValidationService.validateTicket(ticket);
+
+        // Set default status to OPEN if not provided
+        if (ticket.getStatus() == null) {
+            ticket.setStatus(TicketStatus.OPEN);
+        }
+
+        // Set creation date if not provided
+        if (ticket.getCreationDate() == null) {
+            ticket.setCreationDate(Instant.now());
+        }
+
         return ticketRepository.save(ticket);
     }
 
