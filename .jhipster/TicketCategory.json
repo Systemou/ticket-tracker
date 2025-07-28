@@ -1,0 +1,16 @@
+{
+  "annotations": {
+    "changelogDate": "20250728015628"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "TicketCategory",
+  "relationships": [],
+  "searchEngine": "no"
+}

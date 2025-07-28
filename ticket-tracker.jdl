@@ -1,0 +1,30 @@
+entity Ticket {
+  title String required minlength(5),
+  description String required minlength(20),
+  creationDate Instant,
+  status TicketStatus
+}
+
+entity TicketCategory {
+  name String required
+}
+
+entity TicketPriority {
+  name String required
+}
+
+enum TicketStatus {
+  OPEN,
+  IN_PROGRESS,
+  RESOLVED,
+  CLOSED
+}
+
+relationship ManyToOne {
+  Ticket{category} to TicketCategory,
+  Ticket{priority} to TicketPriority,
+  Ticket{user(login)} to User with builtInEntity
+}
+
+service Ticket with serviceClass
+paginate Ticket with pagination

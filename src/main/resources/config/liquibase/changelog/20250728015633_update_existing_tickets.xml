@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20250728015633-1" author="jhipster">
+        <!-- Update existing tickets to have proper category and priority values -->
+        <!-- Set category_id to 1 (BUG) for all existing tickets -->
+        <update tableName="ticket">
+            <column name="category_id" value="1"/>
+            <where>category_id IS NULL</where>
+        </update>
+
+        <!-- Set priority_id to 2 (MEDIUM) for all existing tickets -->
+        <update tableName="ticket">
+            <column name="priority_id" value="2"/>
+            <where>priority_id IS NULL</where>
+        </update>
+
+        <!-- Set user_id to 2 (user) for tickets that don't have a user assigned -->
+        <update tableName="ticket">
+            <column name="user_id" value="2"/>
+            <where>user_id IS NULL</where>
+        </update>
+    </changeSet>
+</databaseChangeLog>

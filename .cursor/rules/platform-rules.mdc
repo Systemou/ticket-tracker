@@ -1,0 +1,58 @@
+```json
+{
+  "name": "Support Ticket Submission Platform",
+  "description": "Guides the AI to understand and generate code for a support ticket submission platform, focusing on user-friendliness, validation, and database integration.",
+  "triggers": [
+    {
+      "type": "file_extension",
+      "values": [".js", ".jsx", ".ts", ".tsx", ".py", ".java", ".html", ".css", ".sql"]
+    },
+    {
+      "type": "file_content",
+      "contains": ["support ticket", "issue reporting", "help desk", "ticket submission", "customer support", "bug report", "problem report", "assistance request", "ticket status", "ticket priority", "ticket category"]
+    },
+    {
+      "type": "prompt_content",
+      "contains": ["submit support ticket", "new support ticket", "report an issue", "ticket form", "support request", "ticket creation", "ticket management", "ticket validation"]
+    }
+  ],
+  "actions": [
+    {
+      "type": "set_context",
+      "context": {
+        "domain": "Support Ticket Management",
+        "purpose": "Allowing users to submit support tickets and receive assistance.",
+        "features": [
+          "Ticket Submission Form",
+          "Ticket Validation",
+          "Automatic Creation Date",
+          "Initial Ticket Status",
+          "Database Storage",
+          "Success Message Display",
+          "Error Message Display",
+          "Category Selection",
+          "Priority Selection",
+          "Ticket Listing"
+        ],
+        "target_audience": "Users needing support and the support team.",
+        "ui_ux_guidelines": {
+          "design_system": "Use a clear and intuitive design system (e.g., Bootstrap, Material UI, or a custom one) that is easy to understand and navigate.",
+          "responsiveness": "Ensure the ticket submission form is fully responsive across different devices (desktops, tablets, mobile phones).",
+          "interactivity": "Provide real-time validation feedback as the user fills out the form. Use modals or alerts for success and error messages.",
+          "data_visualization": "Consider using charts or graphs to display ticket statistics (e.g., number of open tickets, resolution time).",
+          "accessibility": "Follow accessibility guidelines (WCAG) to ensure the form is usable by people with disabilities.",
+          "user_flow": "Design a simple and straightforward user flow for submitting a ticket. Minimize the number of required steps.",
+          "performance": "Optimize the form for fast loading times and smooth performance.",
+          "feedback": "Provide clear and immediate feedback to user actions (e.g., loading indicators, success messages, error messages).",
+          "consistency": "Maintain consistent styling and behavior across all pages and components.",
+          "modern_aesthetics": "Utilize a clean and modern UI with a visually appealing color palette."
+        }
+      }
+    },
+    {
+        "type":"add_instruction",
+        "instruction":"When generating UI code or suggestions, prioritize responsiveness, interactivity, and a user-friendly design. Ensure the UI aligns with the specified design system and accessibility guidelines. Focus on providing clear and immediate feedback to the user. When generating backend code, focus on data validation, secure storage, and efficient processing of ticket submissions. Implement robust error handling and logging."
+    }
+  ]
+}
+```

@@ -1,0 +1,288 @@
+/* ==========================================================================
+Development Ribbon
+========================================================================== */
+.ribbon {
+  background: linear-gradient(135deg, var(--danger-color), #dc2626);
+  left: -3.5em;
+  transform: rotate(-45deg);
+  overflow: hidden;
+  position: absolute;
+  top: 40px;
+  white-space: nowrap;
+  width: 15em;
+  z-index: var(--z-tooltip);
+  pointer-events: none;
+  opacity: 0.9;
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-sm);
+
+  a {
+    color: var(--white);
+    display: block;
+    font-weight: 500;
+    margin: 1px 0;
+    padding: 10px 50px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    transition: all var(--transition-fast);
+  }
+}
+
+/* ==========================================================================
+Navbar styles
+========================================================================== */
+.jh-navbar {
+  background: linear-gradient(135deg, var(--gray-800) 0%, var(--gray-900) 100%);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--gray-700);
+
+  .profile-image {
+    margin: -10px 0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    transition: all var(--transition-fast);
+
+    &:hover {
+      transform: scale(1.1);
+      border-color: var(--primary-light);
+    }
+  }
+
+  .dropdown-item {
+    transition: all var(--transition-fast);
+    border-radius: var(--radius-sm);
+    margin: var(--spacing-xs);
+
+    &.active,
+    &.active:focus,
+    &.active:hover {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: var(--white);
+      transform: translateX(5px);
+    }
+
+    &:hover {
+      background: var(--gray-100);
+      transform: translateX(3px);
+    }
+  }
+
+  .dropdown-toggle::after {
+    margin-left: 0.15em;
+    transition: transform var(--transition-fast);
+  }
+
+  .dropdown.show .dropdown-toggle::after {
+    transform: rotate(180deg);
+  }
+
+  ul.navbar-nav {
+    padding: var(--spacing-sm);
+
+    .nav-item {
+      margin-left: var(--spacing-lg);
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+        transition: all var(--transition-normal);
+        transform: translateX(-50%);
+        border-radius: var(--radius-sm);
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+
+  a.nav-link {
+    font-weight: 500;
+    color: var(--gray-300) !important;
+    transition: all var(--transition-fast);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm) var(--spacing-md) !important;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left var(--transition-slow);
+    }
+
+    &:hover::before {
+      left: 100%;
+    }
+
+    &:hover {
+      color: var(--white) !important;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-1px);
+    }
+
+    &.active {
+      color: var(--white) !important;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      box-shadow: var(--shadow-md);
+    }
+
+    > span {
+      margin-left: 5px;
+      transition: transform var(--transition-fast);
+    }
+
+    &:hover > span {
+      transform: scale(1.05);
+    }
+  }
+
+  .jh-navbar-toggler {
+    color: var(--gray-300);
+    font-size: 1.5em;
+    padding: var(--spacing-sm);
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+
+    &:hover {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.1);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+    }
+  }
+}
+
+.navbar-brand {
+  overflow: hidden;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.jh-navbar .navbar-nav .nav-link {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.navbar-version {
+  font-size: 0.65em;
+  color: var(--gray-400);
+  padding: 0 0 0 var(--spacing-sm);
+  font-weight: 500;
+}
+
+.brand-logo {
+  transition: all var(--transition-fast);
+
+  &:hover {
+    text-decoration: none;
+    transform: scale(1.05);
+  }
+
+  .brand-icon {
+    height: 35px;
+    width: auto;
+    display: inline-block;
+    transition: all var(--transition-fast);
+
+    img {
+      width: 45px;
+      border-radius: var(--radius-sm);
+    }
+
+    &:hover {
+      transform: rotate(5deg);
+    }
+  }
+}
+
+.brand-title {
+  font-size: 1.25rem;
+  margin-left: 0.25rem;
+  color: var(--white);
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--white), var(--gray-300));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background: linear-gradient(135deg, var(--primary-light), var(--white));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+    transform: scale(1.05);
+  }
+}
+
+.loading-bar {
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light), var(--primary-color));
+  background-size: 200% 100%;
+  animation: loading 2s infinite;
+  position: absolute;
+  top: 0;
+  z-index: var(--z-fixed);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .jh-navbar {
+    padding: var(--spacing-xs) var(--spacing-md);
+
+    ul.navbar-nav {
+      padding: var(--spacing-xs);
+
+      .nav-item {
+        margin-left: 0;
+        margin-bottom: var(--spacing-xs);
+      }
+    }
+
+    a.nav-link {
+      padding: var(--spacing-md) !important;
+      margin-bottom: var(--spacing-xs);
+    }
+  }
+
+  .brand-title {
+    font-size: 1rem;
+  }
+}
