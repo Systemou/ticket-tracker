@@ -3,13 +3,11 @@ package com.mycompany.myapp;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 /**
  * Unit tests for the {@link TicketTrackerApp}.
  */
 @SpringBootTest(classes = TicketTrackerApp.class)
-@ActiveProfiles("test")
 class TicketTrackerAppTest {
 
     @Test
