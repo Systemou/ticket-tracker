@@ -127,7 +127,9 @@ export const TicketUpdate = () => {
                     <TicketIcon size={32} className="text-primary" />
                   </motion.div>
                   <div>
-                    <h2 className="mb-0 fw-bold text-gradient">{isNew ? 'Create New Ticket' : 'Edit Ticket'}</h2>
+                    <h2 data-cy="TicketCreateUpdateHeading" className="mb-0 fw-bold text-gradient">
+                      {isNew ? 'Create New Ticket' : 'Edit Ticket'}
+                    </h2>
                     <p className="text-muted mb-0">{isNew ? 'Submit a new support request' : 'Update ticket information'}</p>
                   </div>
                 </div>
@@ -231,12 +233,18 @@ export const TicketUpdate = () => {
               {/* Action Buttons */}
               <motion.div variants={fieldVariants} className="d-flex gap-3 justify-content-end mt-4 pt-4 border-top">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link to="/ticket" className="btn btn-outline-secondary">
+                  <Link to="/ticket" className="btn btn-outline-secondary" data-cy="entityCreateCancelButton">
                     Cancel
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button color="primary" type="submit" disabled={updating} className="d-flex align-items-center gap-2">
+                  <Button
+                    color="primary"
+                    type="submit"
+                    disabled={updating}
+                    className="d-flex align-items-center gap-2"
+                    data-cy="entityCreateSaveButton"
+                  >
                     <AnimatePresence mode="wait">
                       {updating ? (
                         <motion.div

@@ -15,7 +15,12 @@ describe('Ticket e2e test', () => {
   const ticketPageUrlPattern = new RegExp('/ticket(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const ticketSample = { title: 'soXXX', description: 'belowXXXXXXXXXXXXXXX' };
+  const ticketSample = {
+    title: 'soXXX',
+    description: 'belowXXXXXXXXXXXXXXX',
+    category: { id: 1, name: 'BUG' },
+    priority: { id: 1, name: 'LOW' },
+  };
 
   let ticket;
 
@@ -173,6 +178,10 @@ describe('Ticket e2e test', () => {
       cy.get(`[data-cy="creationDate"]`).should('have.value', '2025-07-27T09:56');
 
       cy.get(`[data-cy="status"]`).select('IN_PROGRESS');
+
+      // Select category and priority (required fields)
+      cy.get(`[data-cy="category"]`).select('1'); // BUG category
+      cy.get(`[data-cy="priority"]`).select('1'); // LOW priority
 
       cy.get(entityCreateSaveButtonSelector).click();
 

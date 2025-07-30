@@ -1,13 +1,19 @@
 package com.mycompany.myapp.service.dto;
 
+import java.io.Serializable;
+import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.mycompany.myapp.config.Constants;
 import com.mycompany.myapp.domain.Authority;
 import com.mycompany.myapp.domain.User;
-import jakarta.validation.constraints.*;
-import java.io.Serializable;
-import java.time.Instant;
-import java.util.Set;
-import java.util.stream.Collectors;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 /**
  * A DTO representing a user, with his authorities.
@@ -68,7 +74,9 @@ public class AdminUserDTO implements Serializable {
         this.createdDate = user.getCreatedDate();
         this.lastModifiedBy = user.getLastModifiedBy();
         this.lastModifiedDate = user.getLastModifiedDate();
-        this.authorities = user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet());
+        this.authorities = user.getAuthorities() != null
+            ? user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet())
+            : new HashSet<>();
     }
 
     public Long getId() {

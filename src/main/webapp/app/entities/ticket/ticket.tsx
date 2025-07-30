@@ -191,7 +191,9 @@ export const Ticket = () => {
                     <TicketIcon size={32} className="text-primary" />
                   </motion.div>
                   <div>
-                    <h2 className="mb-0 fw-bold text-gradient">Support Tickets</h2>
+                    <h2 data-cy="TicketHeading" className="mb-0 fw-bold text-gradient">
+                      Support Tickets
+                    </h2>
                     <p className="text-muted mb-0">Manage and track support requests</p>
                   </div>
                 </div>
@@ -207,7 +209,7 @@ export const Ticket = () => {
                     </Button>
                   </motion.div>
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Link to="/ticket/new" className="btn btn-primary d-flex align-items-center gap-2">
+                    <Link to="/ticket/new" className="btn btn-primary d-flex align-items-center gap-2" data-cy="entityCreateButton">
                       <Plus size={16} />
                       Create Ticket
                     </Link>
@@ -282,7 +284,7 @@ export const Ticket = () => {
         <Card className="border-0 shadow-sm">
           <div className="p-0">
             <div className="table-responsive">
-              <Table className="table-hover mb-0">
+              <Table className="table-hover mb-0" data-cy="entityTable">
                 <thead>
                   <tr>
                     <th className="border-0">
@@ -371,12 +373,16 @@ export const Ticket = () => {
                           <td className="align-middle">
                             <div className="d-flex gap-2">
                               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                                <Link to={`/ticket/${ticket.id}`} className="btn btn-sm btn-outline-primary">
+                                <Link to={`/ticket/${ticket.id}`} className="btn btn-sm btn-outline-primary" data-cy="entityDetailsButton">
                                   View
                                 </Link>
                               </motion.div>
                               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                                <Link to={`/ticket/${ticket.id}/edit`} className="btn btn-sm btn-outline-secondary">
+                                <Link
+                                  to={`/ticket/${ticket.id}/edit`}
+                                  className="btn btn-sm btn-outline-secondary"
+                                  data-cy="entityEditButton"
+                                >
                                   Edit
                                 </Link>
                               </motion.div>
@@ -387,7 +393,7 @@ export const Ticket = () => {
                                   outline
                                   onClick={() => handleDeleteClick(ticket)}
                                   className="d-flex align-items-center gap-1"
-                                  data-cy="delete-ticket-button"
+                                  data-cy="entityDeleteButton"
                                 >
                                   <Trash2 size={14} />
                                   Delete

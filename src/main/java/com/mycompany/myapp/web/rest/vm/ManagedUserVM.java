@@ -1,6 +1,7 @@
 package com.mycompany.myapp.web.rest.vm;
 
 import com.mycompany.myapp.service.dto.AdminUserDTO;
+
 import jakarta.validation.constraints.Size;
 
 /**
@@ -30,6 +31,6 @@ public class ManagedUserVM extends AdminUserDTO {
     // prettier-ignore
     @Override
     public String toString() {
-        return "ManagedUserVM{" + super.toString() + "} ";
+        return "ManagedUserVM{" + super.toString() + ", password='" + password + "'} ";
     }
 }

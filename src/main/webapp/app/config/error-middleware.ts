@@ -1,3 +1,5 @@
+declare const DEVELOPMENT: boolean;
+
 const getErrorMessage = errorData => {
   let { message } = errorData;
   if (errorData.fieldErrors) {

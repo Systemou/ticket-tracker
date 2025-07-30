@@ -1,4 +1,6 @@
 /* eslint no-console: off */
+declare const DEVELOPMENT: boolean;
+
 export default () => next => action => {
   if (DEVELOPMENT) {
     const { type, payload, meta, error } = action;
