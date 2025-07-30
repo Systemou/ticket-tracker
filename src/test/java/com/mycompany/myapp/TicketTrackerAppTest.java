@@ -9,7 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
  * Unit tests for the {@link TicketTrackerApp}.
  */
 @SpringBootTest(classes = TicketTrackerApp.class)
-@ActiveProfiles("test")
+@ActiveProfiles({"test", "testprod"})
 class TicketTrackerAppTest {
 
     @Test

@@ -2,6 +2,7 @@ package com.mycompany.myapp.config;
 
 import java.util.Arrays;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -12,6 +13,7 @@ import org.springframework.test.context.ContextConfigurationAttributes;
 import org.springframework.test.context.ContextCustomizer;
 import org.springframework.test.context.ContextCustomizerFactory;
 import org.springframework.test.context.MergedContextConfiguration;
+
 import tech.jhipster.config.JHipsterConstants;
 
 public class SqlTestContainersSpringContextCustomizerFactory implements ContextCustomizerFactory {
@@ -36,16 +38,14 @@ public class SqlTestContainersSpringContextCustomizerFactory implements ContextC
                     log.info("Warming up the sql database");
                     if (null == prodTestContainer) {
                         try {
-                            Class<? extends SqlTestContainer> containerClass = (Class<? extends SqlTestContainer>) Class.forName(
-                                this.getClass().getPackageName() + ".MysqlTestContainer"
-                            );
+                            Class<? extends SqlTestContainer> containerClass = MysqlTestContainer.class;
                             prodTestContainer = beanFactory.createBean(containerClass);
                             beanFactory.registerSingleton(containerClass.getName(), prodTestContainer);
                             /**
                              * ((DefaultListableBeanFactory)beanFactory).registerDisposableBean(containerClass.getName(), prodTestContainer);
                              */
-                        } catch (ClassNotFoundException e) {
-                            throw new RuntimeException(e);
+                        } catch (Exception e) {
+                            throw new RuntimeException("Failed to create MysqlTestContainer", e);
                         }
                     }
                     testValues = testValues.and(
